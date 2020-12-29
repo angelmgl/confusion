@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 
 function About(props) {
 
+    document.title = 'About';
+
     const leaders = props.leaders.map((leader) => {
         return (
             <RenderLeader leader={leader} />

@@ -24,6 +24,8 @@ import { Link } from 'react-router-dom';
             );
         });
 
+        document.title = 'Menu';
+
         return (
             <div className="container">
                 <div className="row">

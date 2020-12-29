@@ -15,6 +15,9 @@ function RenderCard({ item }) {
 }
 
 function Home(props) {
+
+    document.title = 'Con Fusion'
+
     return(
         <div className="container">
             <div className="row align-items-start">
