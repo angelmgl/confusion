@@ -6,6 +6,7 @@ export const Dishes = (state = {
         dishes: []
     }, action) => {
     switch(action.type) {
+        
         case ActionTypes.ADD_DISHES:
             return {...state, isLoading: false, error: null, dishes: action.payload}
 
@@ -13,7 +14,7 @@ export const Dishes = (state = {
             return {...state, isLoading: true, error: null, dishes: []}
 
         case ActionTypes.DISHES_FAILED:
-            return {...state, isLoading: true, error: action.payload, dishes: []}
+            return {...state, isLoading: false, error: action.payload, dishes: []}
 
         default: 
             return state;
