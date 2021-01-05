@@ -5,17 +5,23 @@ import { Link } from 'react-router-dom';
 import { Control, LocalForm, Errors } from 'react-redux-form';
 import { Loading } from './LoadingComponent';
 import { baseUrl } from '../shared/baseUrl';
+import { FadeTransform, Fade, Stagger } from "react-animation-components";
 
     function RenderDish({ dish }) {
         return(
             <div className="col-12 col-md-5 m-1">
-                <Card>
-                <CardImg width="100%" src={baseUrl + dish.image} alt={dish.name} />
-                <CardBody>
-                    <CardTitle>{dish.name}</CardTitle>
-                    <CardText>{dish.description}</CardText>
-                </CardBody>
-                </Card>
+                <FadeTransform in
+                    transformProps={{
+                        exitTransform: 'scale(0.5) translateY(-50%)'
+                    }}>
+                    <Card>
+                    <CardImg width="100%" src={baseUrl + dish.image} alt={dish.name} />
+                    <CardBody>
+                        <CardTitle>{dish.name}</CardTitle>
+                        <CardText>{dish.description}</CardText>
+                    </CardBody>
+                    </Card> 
+                </FadeTransform>
             </div>
         )
     }
@@ -25,11 +31,13 @@ import { baseUrl } from '../shared/baseUrl';
         const comment = comments.map((comment) => {
             let date = new Date(comment.date);
             return(
-                <li>
-                    <p>{comment.comment}</p>
+                <Fade in>
+                    <li>
+                        <p>{comment.comment}</p>
 
-                    <p>--{comment.author}, {date.toDateString()}.</p>
-                </li>
+                        <p>--{comment.author}, {date.toDateString()}.</p>
+                    </li>
+                </Fade>
             )
         });
 
@@ -37,7 +45,7 @@ import { baseUrl } from '../shared/baseUrl';
             <div className="col-12 col-md-5 m-1">
                 <h4>Comments</h4>
                 <ul className="list-unstyled">
-                    {comment}
+                    <Stagger in>{comment}</Stagger>
                 </ul>
                 <CommentForm dishId={dishId} postComment={postComment}/>
             </div> 

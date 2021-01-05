@@ -74,11 +74,11 @@ class Main extends Component {
                 <Header />
                 <TransitionGroup>
                     <CSSTransition key={this.props.location.key} classNames="page" timeout={300}>
-                        <Switch>
+                        <Switch location={this.props.location}>
                             <Route path="/home" component={HomePage} />
                             <Route exact path="/menu" component={ () => <Menu dishes={this.props.dishes} /> } />
                             <Route path="/menu/:dishId" component={DishWithId} />
-                            <Route exact path="/contactus" component={() => <Contact resetFeedbackForm={this.props.resetFeedbackForm} /> } />
+                            <Route exact path="/contactus" component={ () => <Contact resetFeedbackForm={this.props.resetFeedbackForm} /> } />
                             <Route exact path="/about" component={ () => <About leaders={this.props.leaders} /> } />
                             <Redirect to="/home" />
                         </Switch>
