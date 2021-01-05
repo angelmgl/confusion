@@ -143,3 +143,39 @@ export const addPromos = (promos) => ({
     type: ActionTypes.ADD_PROMOS,
     payload: promos
 });
+
+export const fetchLeaders = () => (dispatch) => {
+    dispatch(leadersLoading(true));
+
+    return fetch(baseUrl + 'leaders')
+        .then(response => {
+            if(response.ok) {
+                return response;
+            } else {
+                let error = new Error('Error ' + response.status + ': ' + response.statusText);
+                error.response = response;
+                throw error;
+            }
+        },
+        error => {
+            let errmess = new Error(error.message);
+            throw errmess;
+        })
+        .then(response => response.json())
+        .then(promos => dispatch(addLeaders(promos)))
+        .catch(error => dispatch(leadersFailed(error.message)))
+}
+
+export const leadersLoading = () => ({
+    type: ActionTypes.LEADERS_LOADING
+})
+
+export const leadersFailed = (error) => ({
+    type: ActionTypes.LEADERS_FAILED,
+    payload: error
+});
+
+export const addLeaders = (promos) => ({
+    type: ActionTypes.ADD_LEADERS,
+    payload: promos
+});
