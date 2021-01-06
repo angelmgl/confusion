@@ -214,7 +214,7 @@ export const postFeedback = (firstname, lastname, telnum, email, agree, contactT
             throw errmess;
         })
         .then(response => response.json())
-        .then(response => alert('Successfully submitted!\n' + response))
+        .then(response => alert('Successfully submitted!\n' + response.firstname + ' ' + response.lastname))
         .catch(error => { console.log('Post comments ', error.message)
             alert('Your feedback could not be posted\nError: ' + error.message)})
-};
+    }
